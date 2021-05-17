@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename
+import tkinter.messagebox
 import subprocess
 
 # Make window
@@ -40,8 +41,17 @@ def run():
         code_out.insert("1.0", error)
     else:
         save_as()
+def keybinds():
+    top = Toplevel(compiler)
+    top.geometry("750x250")
+    top.title("Keybinds")
+    keybindsList = Label(top, text="Ctrl+S: Save\nCtrl+R: Run program\nCtrl+K: Open keybinds")
+    keybindsList.pack()
 
-# Configure menu bar
+# Configure stuff
+compiler.bind("<Control-s>", lambda x: save_as())
+compiler.bind("<Control-r>", lambda x: run())
+compiler.bind("<Control-k>", lambda x: keybinds())
 menu_bar = Menu(compiler)
 
 # File bar
@@ -53,18 +63,20 @@ file_bar.add_command(label="Exit", command=exit)
 menu_bar.add_cascade(label="File", menu=file_bar)
 
 # Command Bar
-cmd_bar = Menu(menu_bar, tearoff=0)
-cmd_bar.add_command(label="Run", command=run)
-menu_bar.add_cascade(label="Command", menu=cmd_bar)
+option_bar = Menu(menu_bar, tearoff=0)
+option_bar.add_command(label="Run", command=run)
+option_bar.add_command(label="Keybinds", command=keybinds)
+menu_bar.add_cascade(label="Option", menu=option_bar)
 
 # Tell window to add bar
 compiler.config(menu=menu_bar)
 
 # Make editor
+
 editor = Text(compiler, width=100, bg="#313131", fg="#ffffff", font="Consolas")
 editor.pack()
 
-code_out = Text(compiler, height=8, width=100,bg="#313131", fg="#ffffff", font="Consolas", state="disabled")
+code_out = Text(compiler, height=8, width=100, bg="#313131", fg="#ffffff", font="Consolas", state="normal")
 code_out.pack()
 
 # Open window
