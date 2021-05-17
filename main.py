@@ -15,7 +15,7 @@ def set_file_path(path):
 
 def save_as():
     if file_path == "":
-        path = asksaveasfilename(filetypes=[("All Files", "*.*")])
+        path = asksaveasfilename(filetypes=[("All Files", "*.py*")])
     else:
         path = file_path
     with open(path, "w") as file:
@@ -24,7 +24,7 @@ def save_as():
         set_file_path(path)
 
 def open_file():
-    path = askopenfilename(filetypes=[("All Files", "*.*")])
+    path = askopenfilename(filetypes=[("All Files", "*.py*")])
     with open(path, "r") as file:
         editor.delete("1.0", END)
         editor.insert("1.0", file.read())
