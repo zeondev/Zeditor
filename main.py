@@ -4,9 +4,9 @@ import tkinter.messagebox
 import subprocess
 
 # Make window
-compiler = Tk()
-compiler.title("Zeditor")
-compiler.geometry("1100x750")
+root = Tk()
+root.title("Zeditor")
+root.geometry("1100x750")
 file_path = ""
 
 # Defs
@@ -42,17 +42,18 @@ def run():
     else:
         save_as()
 def keybinds():
-    top = Toplevel(compiler)
+    top = Toplevel(root)
     top.geometry("750x250")
     top.title("Keybinds")
-    keybindsList = Label(top, text="Ctrl+S: Save\nCtrl+R: Run program\nCtrl+K: Open keybinds")
+    keybindsList = Label(top, text="Ctrl+S: Save\nCtrl+R: Run program\nCtrl+O: Open File\nCtrl+K: Open keybinds")
     keybindsList.pack()
 
 # Configure stuff
-compiler.bind("<Control-s>", lambda x: save_as())
-compiler.bind("<Control-r>", lambda x: run())
-compiler.bind("<Control-k>", lambda x: keybinds())
-menu_bar = Menu(compiler)
+root.bind("<Control-s>", lambda x: save_as())
+root.bind("<Control-r>", lambda x: run())
+root.bind("<Control-k>", lambda x: keybinds())
+root.bind("<Control-o>", lambda x: open_file())
+menu_bar = Menu(root)
 
 # File bar
 file_bar = Menu(menu_bar, tearoff=0)
@@ -69,17 +70,17 @@ option_bar.add_command(label="Keybinds", command=keybinds)
 menu_bar.add_cascade(label="Option", menu=option_bar)
 
 # Tell window to add bar
-compiler.config(menu=menu_bar)
+root.config(menu=menu_bar)
 
 # Make editor
 
-editor = Text(compiler, width=100, bg="#313131", fg="#ffffff", font="Consolas")
+editor = Text(root, width=100, bg="#313131", fg="#ffffff", font="Consolas")
 editor.pack()
 
-code_out = Text(compiler, height=8, width=100, bg="#313131", fg="#ffffff", font="Consolas", state="normal")
+code_out = Text(root, height=8, width=100, bg="#313131", fg="#ffffff", font="Consolas", state="normal")
 code_out.pack()
 
 # Open window
-compiler.mainloop()
+root.mainloop()
 
 
