@@ -5,6 +5,7 @@ import subprocess
 # Make window
 compiler = Tk()
 compiler.title("Zeditor")
+compiler.geometry("1100x750")
 file_path = ""
 
 # Defs
@@ -15,7 +16,7 @@ def set_file_path(path):
 
 def save_as():
     if file_path == "":
-        path = asksaveasfilename(filetypes=[("All Files", "*.py*")])
+        path = asksaveasfilename(filetypes=[("All Files", "*.*")])
     else:
         path = file_path
     with open(path, "w") as file:
@@ -24,7 +25,7 @@ def save_as():
         set_file_path(path)
 
 def open_file():
-    path = askopenfilename(filetypes=[("All Files", "*.py*")])
+    path = askopenfilename(filetypes=[("All Files", "*.*")])
     with open(path, "r") as file:
         editor.delete("1.0", END)
         editor.insert("1.0", file.read())
@@ -60,11 +61,13 @@ menu_bar.add_cascade(label="Command", menu=cmd_bar)
 compiler.config(menu=menu_bar)
 
 # Make editor
-editor = Text()
+editor = Text(compiler, width=100, bg="#313131", fg="#ffffff", font="Consolas")
 editor.pack()
 
-code_out = Text(height=8)
+code_out = Text(compiler, height=8, width=100,bg="#313131", fg="#ffffff", font="Consolas", state="disabled")
 code_out.pack()
 
 # Open window
 compiler.mainloop()
+
+
