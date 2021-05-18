@@ -117,5 +117,6 @@ def update():
             print("Failed to update. Please check your internet connection")
         else:
             file.write(x.text)
+            print("Updated successfully.")
 
 update()
