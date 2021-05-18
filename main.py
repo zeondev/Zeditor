@@ -1,4 +1,4 @@
-import update
+import requests
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename
 import tkinter.messagebox
@@ -110,4 +110,12 @@ root.grid_columnconfigure(0, weight=1)
 root.geometry("1100x750")
 root.mainloop()
 
-update.update()
+def update():
+    with open("main.py", "w") as file:
+        x = requests.get('https://raw.githubusercontent.com/zeondev/Zeditor/master/main.py')
+        if x == "":
+            print("Failed to update. Please check your internet connection")
+        else:
+            file.write(x.text)
+
+update()
