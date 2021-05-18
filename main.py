@@ -20,7 +20,7 @@ def set_file_path(path):
 
 def save_as():
     if file_path == "":
-        path = asksaveasfilename(filetypes=[("All Files", "*.*")])
+        path = asksaveasfilename(filetypes=[("All Files", "*.py")])
     else:
         path = file_path
     with open(path, "w") as file:
@@ -29,7 +29,7 @@ def save_as():
         set_file_path(path)
 
 def open_file():
-    path = askopenfilename(filetypes=[("All Files", "*.*")])
+    path = askopenfilename(filetypes=[("All Files", "*.py")])
     with open(path, "r") as file:
         editor.delete("1.0", END)
         editor.insert("1.0", file.read())
@@ -115,14 +115,3 @@ root.grid_columnconfigure(0, weight=1)
 # Open window
 root.geometry("1100x750")
 root.mainloop()
-
-# def update():
-#     with open("main.py", "w") as file:
-#         x = requests.get('https://raw.githubusercontent.com/zeondev/Zeditor/master/main.py')
-#         if x == "":
-#             print("Failed to update. Please check your internet connection")
-#         else:
-#             file.write(x.text)
-#             print("Updated successfully.")
-
-# update()
