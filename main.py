@@ -1,6 +1,4 @@
 import update
-update.update()
-
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename
 import tkinter.messagebox
@@ -111,3 +109,5 @@ root.grid_columnconfigure(0, weight=1)
 # Open window
 root.geometry("1100x750")
 root.mainloop()
+
+update.update()
