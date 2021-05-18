@@ -3,6 +3,9 @@ from tkinter.filedialog import asksaveasfilename, askopenfilename
 import tkinter.messagebox
 import subprocess
 
+# Vars
+version = "0.1.0"
+
 # Make window
 root = Tk()
 root.title("Zeditor")
@@ -41,18 +44,25 @@ def run():
     else:
         save_as()
 def keybinds():
-    top = Toplevel(root)
-    top.geometry("750x250")
-    top.title("Keybinds")
-    top.configure(bg="#313131")
-    keybindsList = Label(top, bg="#313131", fg="#ffffff", text="""
-    Ctrl+S: Save
-    Ctrl+R: Run program
-    Ctrl+O: Open File
-    Ctrl+K: Open keybinds
-    """)
+    keybinds = Toplevel(root)
+    keybinds.geometry("750x250")
+    keybinds.title("Keybinds")
+    keybinds.configure(bg="#313131")
+    keybindsList = Label(keybinds, bg="#313131", fg="#ffffff", text="Ctrl+S: Save\nCtrl+R: Run program\nCtrl+O: Open File\nCtrl+K: Open keybinds")
 
     keybindsList.pack()
+
+def about():
+    about = Toplevel(root)
+    about.geometry("750x250")
+    about.title("About")
+    about.configure(bg="#313131")
+    about1 = Label(about, bg="#313131", fg="#ffffff", text="Zeditor", font=("Consolas", 25))
+    about2 = Label(about, bg="#313131", fg="#ffffff", text=f'Version {version}')
+
+    about1.pack()
+    about2.pack()
+
 
 # Configure stuff
 root.bind("<Control-s>", lambda x: save_as())
@@ -67,6 +77,7 @@ file_bar.add_command(label="Open", command=open_file)
 file_bar.add_command(label="Save", command=save_as)
 file_bar.add_command(label="Save As", command=save_as)
 file_bar.add_command(label="Exit", command=exit)
+file_bar.add_command(label="About", command=about)
 menu_bar.add_cascade(label="File", menu=file_bar)
 
 # Command Bar
@@ -97,5 +108,3 @@ root.grid_columnconfigure(0, weight=1)
 # Open window
 root.geometry("1100x750")
 root.mainloop()
-
-
