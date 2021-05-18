@@ -44,7 +44,8 @@ def keybinds():
     top = Toplevel(root)
     top.geometry("750x250")
     top.title("Keybinds")
-    keybindsList = Label(top, text="""
+    top.configure(bg="#313131")
+    keybindsList = Label(top, bg="#313131", fg="#ffffff", text="""
     Ctrl+S: Save
     Ctrl+R: Run program
     Ctrl+O: Open File
