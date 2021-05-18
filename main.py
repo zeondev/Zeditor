@@ -6,7 +6,6 @@ import subprocess
 # Make window
 root = Tk()
 root.title("Zeditor")
-root.geometry("1100x750")
 file_path = ""
 
 # Defs
@@ -45,7 +44,13 @@ def keybinds():
     top = Toplevel(root)
     top.geometry("750x250")
     top.title("Keybinds")
-    keybindsList = Label(top, text="Ctrl+S: Save\nCtrl+R: Run program\nCtrl+O: Open File\nCtrl+K: Open keybinds")
+    keybindsList = Label(top, text="""
+    Ctrl+S: Save
+    Ctrl+R: Run program
+    Ctrl+O: Open File
+    Ctrl+K: Open keybinds
+    """)
+
     keybindsList.pack()
 
 # Configure stuff
@@ -75,12 +80,21 @@ root.config(menu=menu_bar)
 # Make editor
 
 editor = Text(root, width=100, bg="#313131", fg="#ffffff", font="Consolas")
-editor.pack()
+
+editor.grid(row=0, column=0, sticky="nsew")
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
+
+# Output
 
 code_out = Text(root, height=8, width=100, bg="#313131", fg="#ffffff", font="Consolas", state="normal")
-code_out.pack()
+
+code_out.grid(row=1, column=0, sticky="nsew")
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
 
 # Open window
+root.geometry("1100x750")
 root.mainloop()
 
 
