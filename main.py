@@ -64,12 +64,18 @@ def about():
     about1.pack()
     about2.pack()
 
+def codeHighlight():
+    # editor.tag_config("start", foreground="red")
+    # editor.tag_add("start", "1.6", "1.12")
+    return 0
+
 
 # Configure stuff
 root.bind("<Control-s>", lambda x: save_as())
 root.bind("<Control-r>", lambda x: run())
 root.bind("<Control-k>", lambda x: keybinds())
 root.bind("<Control-o>", lambda x: open_file())
+root.bind("<Key>", lambda x: codeHighlight())
 menu_bar = Menu(root)
 
 # File bar
@@ -110,13 +116,13 @@ root.grid_columnconfigure(0, weight=1)
 root.geometry("1100x750")
 root.mainloop()
 
-def update():
-    with open("main.py", "w") as file:
-        x = requests.get('https://raw.githubusercontent.com/zeondev/Zeditor/master/main.py')
-        if x == "":
-            print("Failed to update. Please check your internet connection")
-        else:
-            file.write(x.text)
-            print("Updated successfully.")
+# def update():
+#     with open("main.py", "w") as file:
+#         x = requests.get('https://raw.githubusercontent.com/zeondev/Zeditor/master/main.py')
+#         if x == "":
+#             print("Failed to update. Please check your internet connection")
+#         else:
+#             file.write(x.text)
+#             print("Updated successfully.")
 
-update()
+# update()
