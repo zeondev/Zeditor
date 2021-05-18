@@ -2,6 +2,9 @@ from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename
 import tkinter.messagebox
 import subprocess
+import update
+
+update.update()
 
 # Vars
 version = "0.1.0"
