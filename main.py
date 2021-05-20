@@ -35,6 +35,12 @@ def open_file():
         editor.insert("1.0", file.read())
         set_file_path(path)
 
+def load_extension():
+    path = askopenfilename(filetypes=[("All Files", "*.py")])
+    with open(path, "r") as file:
+        exec(file.read())
+
+
 def run():
     if file_path:
         command = f'python {file_path}'
@@ -44,6 +50,7 @@ def run():
         code_out.insert("1.0", error)
     else:
         save_as()
+
 def keybinds():
     keybinds = Toplevel(root)
     keybinds.geometry("750x250")
@@ -75,6 +82,7 @@ root.bind("<Control-s>", lambda x: save_as())
 root.bind("<Control-r>", lambda x: run())
 root.bind("<Control-k>", lambda x: keybinds())
 root.bind("<Control-o>", lambda x: open_file())
+root.bind("<Control-e>", lambda x: load_extension())
 root.bind("<Key>", lambda x: codeHighlight())
 menu_bar = Menu(root)
 
@@ -91,6 +99,7 @@ menu_bar.add_cascade(label="File", menu=file_bar)
 option_bar = Menu(menu_bar, tearoff=0)
 option_bar.add_command(label="Run", command=run)
 option_bar.add_command(label="Keybinds", command=keybinds)
+option_bar.add_command(label="Load Extension", command=load_extension)
 menu_bar.add_cascade(label="Option", menu=option_bar)
 
 # Tell window to add bar
