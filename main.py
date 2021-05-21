@@ -29,14 +29,14 @@ def save_as():
         set_file_path(path)
 
 def open_file():
-    path = askopenfilename(filetypes=[("All Files", "*.py")])
+    path = askopenfilename(filetypes=[("All Files", "*.*")])
     with open(path, "r") as file:
         editor.delete("1.0", END)
         editor.insert("1.0", file.read())
         set_file_path(path)
 
 def load_extension():
-    path = askopenfilename(filetypes=[("All Files", "*.py")])
+    path = askopenfilename(filetypes=[("All Files", "*.*")])
     with open(path, "r") as file:
         exec(file.read())
 
@@ -46,6 +46,7 @@ def run():
         command = f'python {file_path}'
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         output, error = process.communicate()
+        code_out.delete("1.0", END)
         code_out.insert("1.0", output)
         code_out.insert("1.0", error)
     else:
