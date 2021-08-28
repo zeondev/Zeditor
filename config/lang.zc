@@ -1,0 +1,15 @@
+py:python
+lua:lua
+baz:virtualbasic
+js:javascript
+ts:typescript
+json:json
+jsonc:json-comments
+yaml:yaml
+yml:yaml
+sh:shell-bash
+bash:shell-bash
+ksh:shell-korn
+csh:shell-csh
+zsh:shell-zsh
+fish:shell-fish

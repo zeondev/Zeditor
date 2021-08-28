@@ -1,0 +1,9 @@
+python:python
+lua:lua
+js:node
+shell-bash:bash
+shell-bash:bash
+shell-korn:ksh
+shell-csh:csh
+shell-zsh:zsh
+shell-fish:fish
